@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from './logoApuraRapido.svg'
+import Footer from './Footer'
 
 // function Copyright(props) {
 //   return (
@@ -28,7 +29,9 @@ import logo from './logoApuraRapido.svg'
 
 const theme = createTheme();
 
-export default function SignIn() {
+
+export default function SignIn(props) {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -36,6 +39,11 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    if (data.get('email') == "admin@admin.com" && data.get('password') == "admin"){
+      props.login(true)
+    }
+    else
+      alert("email e/ou senha incorretos")
   };
 
   return (
@@ -61,7 +69,7 @@ export default function SignIn() {
               fullWidth
               id="email"
               label="E-mail"
-              name="useremail"
+              name="email"
               autoFocus
             />
             <TextField
@@ -72,7 +80,7 @@ export default function SignIn() {
               label="Senha"
               type="password"
               id="password"
-              autoComplete="current-password"
+              // autoComplete="current-password"
             />
             {/*
             <FormControlLabel
@@ -80,14 +88,16 @@ export default function SignIn() {
               label="Lembre-se"
             />
             */}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Entrar
-            </Button>
+            <Link to="/form">
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Entrar
+              </Button>
+            </Link>
             <Grid container>
               <Grid item>
                 <Link href="#" variant="body2">
@@ -96,9 +106,9 @@ export default function SignIn() {
               </Grid>
             </Grid>
           </Box>
-        </Box>
-        {/*<Copyright sx={{ mt: 8, mb: 4 }} />*/}
+        </Box>    
       </Container>
+
     </ThemeProvider>
   );
 }
