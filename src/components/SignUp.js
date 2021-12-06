@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Footer from './Footer'
+import logo from './logoApuraRapido.svg'
 
 function Copyright(props) {
   return (
@@ -51,9 +53,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <img src={logo}/>
           <Typography component="h1" variant="h5">
             Cadastro
           </Typography>
@@ -67,6 +67,28 @@ export default function SignUp() {
                   fullWidth
                   id="nome"
                   label="Nome"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="Estado"
+                  required
+                  fullWidth
+                  id="estado"
+                  label="Estado"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="municipio"
+                  required
+                  fullWidth
+                  id="municipio"
+                  label="Município"
                   autoFocus
                 />
               </Grid>
@@ -110,6 +132,7 @@ export default function SignUp() {
           </Box>
         </Box>
       </Container>
+      <Footer/>
     </ThemeProvider>
   );
 }
